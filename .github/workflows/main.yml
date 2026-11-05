@@ -1,0 +1,22 @@
+name: Validar y simular deploy
+
+on:
+ push:
+   branches: ["main"]
+permissions:
+   contents: read
+
+jobs:
+   validar:
+   runs-on: "Ubuntu-lastest"
+   steps:
+     - name: Preparar repositorio
+     - uses: actions/checkout@v4
+     - name: "PASO 1 ESTRUCTURA DE CARPETA"
+     - uses: |
+         test -d
+         test -f app/index.php
+         test -f Dockerfile
+         test -f docker-compose.yml
+     - name: "construccion"
+       uses: docker-compose build
