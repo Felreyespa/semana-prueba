@@ -2,7 +2,7 @@ name: Validar y simular deploy
 
 on:
  push:
-   branches: ["main"]
+   branches: ["master"]
 permissions:
    contents: read
 
@@ -13,10 +13,8 @@ jobs:
      - name: Preparar repositorio
      - uses: actions/checkout@v4
      - name: "PASO 1 ESTRUCTURA DE CARPETA"
-     - uses: |
+     - runs-on: : |
          test -d
          test -f app/index.php
          test -f Dockerfile
          test -f docker-compose.yml
-     - name: "construccion"
-       uses: docker-compose build
